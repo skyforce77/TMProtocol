@@ -52,7 +52,6 @@ public class Connect {
 		server.addListener(new Listener() {
 			public void received (Connection connection, Object object) {
 				if (object instanceof Packet) {
-					System.out.println(object);
 					ListenersManager.callMethod(PacketListener.class, "onPacketReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 					ListenersManager.callMethod(PacketListener.class, "onServerReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 				}
@@ -69,7 +68,6 @@ public class Connect {
 		client.addListener(new Listener() {
 			public void received (Connection connection, Object object) {
 				if (object instanceof Packet) {
-					System.out.println(object);
 					ListenersManager.callMethod(PacketListener.class, "onPacketReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 					ListenersManager.callMethod(PacketListener.class, "onClientReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 				}

@@ -5,6 +5,7 @@ public class Packet11ChatMessage extends Packet{
 	
 	public String message;
 	public String option;
+	public boolean response = false;
 	
 	public Packet11ChatMessage() {}
 	
