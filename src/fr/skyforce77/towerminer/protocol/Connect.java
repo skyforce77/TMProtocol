@@ -60,12 +60,12 @@ public class Connect {
 			
 			@Override
 			public void connected(Connection arg0) {
-				ListenersManager.callMethod(ConnectionListener.class, "onConnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+				ListenersManager.callMethod(ConnectionListener.class, "onConnected", Connection.class, arg0);
 			}
 			
 			@Override
 			public void disconnected(Connection arg0) {
-				ListenersManager.callMethod(ConnectionListener.class, "onDisonnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+				ListenersManager.callMethod(ConnectionListener.class, "onDisconnected", Connection.class, arg0);
 			}
 		});
 
@@ -86,12 +86,12 @@ public class Connect {
 			
 			@Override
 			public void connected(Connection arg0) {
-				ListenersManager.callMethod(ConnectionListener.class, "onConnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+				ListenersManager.callMethod(ConnectionListener.class, "onConnected", Connection.class, arg0);
 			}
 			
 			@Override
 			public void disconnected(Connection arg0) {
-				ListenersManager.callMethod(ConnectionListener.class, "onDisonnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+				ListenersManager.callMethod(ConnectionListener.class, "onDisconnected", Connection.class, arg0);
 			}
 		});
 
