@@ -12,6 +12,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
+import fr.skyforce77.towerminer.protocol.listeners.ConnectionListener;
 import fr.skyforce77.towerminer.protocol.listeners.ListenersManager;
 import fr.skyforce77.towerminer.protocol.listeners.PacketListener;
 import fr.skyforce77.towerminer.protocol.packets.Packet;
@@ -56,6 +57,16 @@ public class Connect {
 					ListenersManager.callMethod(PacketListener.class, "onServerReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 				}
 			}
+			
+			@Override
+			public void connected(Connection arg0) {
+				ListenersManager.callMethod(ConnectionListener.class, "onConnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+			}
+			
+			@Override
+			public void disconnected(Connection arg0) {
+				ListenersManager.callMethod(ConnectionListener.class, "onDisonnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+			}
 		});
 
 		initKryo(server.getKryo());
@@ -71,6 +82,16 @@ public class Connect {
 					ListenersManager.callMethod(PacketListener.class, "onPacketReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 					ListenersManager.callMethod(PacketListener.class, "onClientReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 				}
+			}
+			
+			@Override
+			public void connected(Connection arg0) {
+				ListenersManager.callMethod(ConnectionListener.class, "onConnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
+			}
+			
+			@Override
+			public void disconnected(Connection arg0) {
+				ListenersManager.callMethod(ConnectionListener.class, "onDisonnected", new Class<?>[]{Connection.class}, new Object[]{arg0});
 			}
 		});
 
