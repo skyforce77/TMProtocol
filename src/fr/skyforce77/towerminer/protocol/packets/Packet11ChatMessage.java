@@ -1,17 +1,21 @@
 package fr.skyforce77.towerminer.protocol.packets;
 
+import fr.skyforce77.towerminer.protocol.chat.ChatMessage;
+
 
 public class Packet11ChatMessage extends Packet{
 	
-	public String message;
-	public String option;
+	public byte[] message;
 	public boolean response = false;
 	
 	public Packet11ChatMessage() {}
 	
-	public Packet11ChatMessage(String message, String player) {
-		this.message = message;
-		this.option = player;
+	public Packet11ChatMessage(ChatMessage message) {
+		this.message = serialize(message);
+	}
+	
+	public ChatMessage getMessage() {
+		return (ChatMessage)deserialize(message);
 	}
 
 }
