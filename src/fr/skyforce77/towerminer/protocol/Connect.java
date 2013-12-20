@@ -24,6 +24,7 @@ import fr.skyforce77.towerminer.protocol.packets.Packet13EntityTeleport;
 import fr.skyforce77.towerminer.protocol.packets.Packet14ServerPing;
 import fr.skyforce77.towerminer.protocol.packets.Packet15ServerInfos;
 import fr.skyforce77.towerminer.protocol.packets.Packet16Sound;
+import fr.skyforce77.towerminer.protocol.packets.Packet17Player;
 import fr.skyforce77.towerminer.protocol.packets.Packet1Disconnecting;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
@@ -150,6 +151,7 @@ public class Connect {
 		kryo.register(Packet14ServerPing.class);
 		kryo.register(Packet15ServerInfos.class);
 		kryo.register(Packet16Sound.class);
+		kryo.register(Packet17Player.class);
 	}
 
 	public static int getServerConnection(Connection c) {
