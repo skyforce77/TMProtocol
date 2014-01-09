@@ -7,7 +7,7 @@ public class ChatMessage implements Serializable{
 
 	private static final long serialVersionUID = 235487764656546L;
 	
-	private ArrayList<ChatModel> models = new ArrayList<>();
+	private ArrayList<ChatModel> models = new ArrayList<ChatModel>();
 	
 	public ChatMessage() {}
 	

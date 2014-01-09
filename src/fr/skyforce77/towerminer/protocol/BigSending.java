@@ -10,8 +10,8 @@ import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 
 public class BigSending {
 	
-	public static HashMap<Integer, ObjectReceiver> receiving = new HashMap<>();
-	public static HashMap<Integer, ObjectSender> sending = new HashMap<>();
+	public static HashMap<Integer, ObjectReceiver> receiving = new HashMap<Integer, ObjectReceiver>();
+	public static HashMap<Integer, ObjectSender> sending = new HashMap<Integer, ObjectSender>();
 	
 	public static boolean receive(int id, int lenght, int pack, byte[] data) {
 		receiving.get(id).data = add(receiving.get(id).data, pack*100, data);
@@ -35,7 +35,7 @@ public class BigSending {
 				byte[] map = new Packet2BigSending().serialize(object);
 				int lenght = 0;
 				int id = 0;
-				ArrayList<byte[]> datas = new ArrayList<>();
+				ArrayList<byte[]> datas = new ArrayList<byte[]>();
 				
 				while(receiving.get(id) != null) {
 					id++;
