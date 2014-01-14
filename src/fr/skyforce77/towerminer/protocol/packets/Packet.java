@@ -42,9 +42,8 @@ public class Packet {
 		try {
 			in = new ObjectInputStream(bis);
 			return in.readObject(); 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+		} catch (Exception e) {}
+		finally {
 			try {
 				bis.close();
 				in.close();

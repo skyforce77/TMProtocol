@@ -67,7 +67,7 @@ public class BigSending {
 				init.sendConnectionTCP(client);
 				
 				ObjectSender sender = new ObjectSender();
-				sender.packets = new Packet2BigSending[datas.size()];
+				sender.packets = new Packet2BigSending[datas.size()+10];
 				sender.thread = run;
 				sending.put(id, sender);
 				

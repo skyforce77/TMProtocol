@@ -5,5 +5,7 @@ public class Packet4RoundFinished extends Packet{
 	
 	public int life;
 	public int gold;
+	public int round;
+	public boolean timed = true;
 
 }
