@@ -28,11 +28,12 @@ import fr.skyforce77.towerminer.protocol.packets.Packet17Player;
 import fr.skyforce77.towerminer.protocol.packets.Packet18ParticleEffect;
 import fr.skyforce77.towerminer.protocol.packets.Packet19Particle;
 import fr.skyforce77.towerminer.protocol.packets.Packet1Disconnecting;
+import fr.skyforce77.towerminer.protocol.packets.Packet20EntityData;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
 import fr.skyforce77.towerminer.protocol.packets.Packet5UpdateInfos;
-import fr.skyforce77.towerminer.protocol.packets.Packet6Entity;
+import fr.skyforce77.towerminer.protocol.packets.Packet6EntityCreate;
 import fr.skyforce77.towerminer.protocol.packets.Packet7EntityMove;
 import fr.skyforce77.towerminer.protocol.packets.Packet8EntityRemove;
 import fr.skyforce77.towerminer.protocol.packets.Packet9MouseClick;
@@ -142,7 +143,7 @@ public class Connect {
 		kryo.register(Packet3Action.class);
 		kryo.register(Packet4RoundFinished.class);
 		kryo.register(Packet5UpdateInfos.class);
-		kryo.register(Packet6Entity.class);
+		kryo.register(Packet6EntityCreate.class);
 		kryo.register(Packet7EntityMove.class);
 		kryo.register(Packet8EntityRemove.class);
 		kryo.register(Packet9MouseClick.class);
@@ -156,6 +157,7 @@ public class Connect {
 		kryo.register(Packet17Player.class);
 		kryo.register(Packet18ParticleEffect.class);
 		kryo.register(Packet19Particle.class);
+		kryo.register(Packet20EntityData.class);
 	}
 
 	public static int getServerConnection(Connection c) {
