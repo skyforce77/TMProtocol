@@ -12,6 +12,7 @@ public class BigSending {
 	
 	public static HashMap<Integer, ObjectReceiver> receiving = new HashMap<Integer, ObjectReceiver>();
 	public static HashMap<Integer, ObjectSender> sending = new HashMap<Integer, ObjectSender>();
+	public static boolean issending = false;
 	
 	public static boolean receive(int id, int lenght, int pack, byte[] data) {
 		receiving.get(id).data = add(receiving.get(id).data, pack*100, data);
@@ -32,6 +33,8 @@ public class BigSending {
 		new Thread() {
 			@Override
 			public void run() {
+				while(issending) {}
+				issending = true;
 				byte[] map = new Packet2BigSending().serialize(object);
 				int lenght = 0;
 				int id = 0;
@@ -106,6 +109,7 @@ public class BigSending {
 
 				sending.get(id).testpacket = send;
 				send.sendConnectionTCP(client);
+				issending = false;
 			}
 		}.run();
 	}

@@ -29,6 +29,8 @@ import fr.skyforce77.towerminer.protocol.packets.Packet18ParticleEffect;
 import fr.skyforce77.towerminer.protocol.packets.Packet19Particle;
 import fr.skyforce77.towerminer.protocol.packets.Packet1Disconnecting;
 import fr.skyforce77.towerminer.protocol.packets.Packet20EntityData;
+import fr.skyforce77.towerminer.protocol.packets.Packet21LoadPlugin;
+import fr.skyforce77.towerminer.protocol.packets.Packet22PluginMessage;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
@@ -43,7 +45,7 @@ public class Connect {
 	public static Server server;
 	public static Client client;
 	public static int tcp = 25252;
-	public static int udp = 35353;
+	public static int udp = 25252;
 
 	public static void initServer() {
 		server = new Server();
@@ -158,6 +160,8 @@ public class Connect {
 		kryo.register(Packet18ParticleEffect.class);
 		kryo.register(Packet19Particle.class);
 		kryo.register(Packet20EntityData.class);
+		kryo.register(Packet21LoadPlugin.class);
+		kryo.register(Packet22PluginMessage.class);
 	}
 
 	public static int getServerConnection(Connection c) {
