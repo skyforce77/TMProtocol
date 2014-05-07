@@ -74,6 +74,7 @@ public class BigSending {
 				sender.thread = run;
 				sending.put(id, sender);
 				
+				System.out.println("BigSending: Sending "+map.length+" bytes");
 				int i = 0;
 				while(i < datas.size()) {
 					Packet2BigSending send = new Packet2BigSending();
@@ -91,12 +92,14 @@ public class BigSending {
 					
 					try {
 						sleep(2l);
+						if(i > 10)
+							sleep(2l);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 				try {
-					sleep(10l);
+					sleep(30l);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -111,7 +114,7 @@ public class BigSending {
 				send.sendConnectionTCP(client);
 				issending = false;
 			}
-		}.run();
+		}.start();
 	}
 
 }

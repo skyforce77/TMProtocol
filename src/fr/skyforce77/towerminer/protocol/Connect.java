@@ -32,6 +32,7 @@ import fr.skyforce77.towerminer.protocol.packets.Packet20EntityData;
 import fr.skyforce77.towerminer.protocol.packets.Packet21LoadPlugin;
 import fr.skyforce77.towerminer.protocol.packets.Packet22PluginMessage;
 import fr.skyforce77.towerminer.protocol.packets.Packet23BlockChange;
+import fr.skyforce77.towerminer.protocol.packets.Packet24ServerPopup;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
@@ -47,6 +48,7 @@ public class Connect {
 	public static Client client;
 	public static int tcp = 25252;
 	public static int udp = 25252;
+	public static String localip;
 
 	public static void initServer() {
 		server = new Server();
@@ -54,7 +56,9 @@ public class Connect {
 		try {
 			server.bind(tcp,udp);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Can't be launched, port already used.");
+			System.exit(1);
+			return;
 		}
 
 		server.addListener(new Listener() {
@@ -64,12 +68,12 @@ public class Connect {
 					ListenersManager.callMethod(PacketListener.class, "onServerReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 				}
 			}
-			
+
 			@Override
 			public void connected(Connection arg0) {
 				ListenersManager.callMethod(ConnectionListener.class, "onConnected", Connection.class, arg0);
 			}
-			
+
 			@Override
 			public void disconnected(Connection arg0) {
 				ListenersManager.callMethod(ConnectionListener.class, "onDisconnected", Connection.class, arg0);
@@ -90,12 +94,12 @@ public class Connect {
 					ListenersManager.callMethod(PacketListener.class, "onClientReceived", new Class<?>[]{Connection.class, Packet.class}, new Object[]{connection, object});
 				}
 			}
-			
+
 			@Override
 			public void connected(Connection arg0) {
 				ListenersManager.callMethod(ConnectionListener.class, "onConnected", Connection.class, arg0);
 			}
-			
+
 			@Override
 			public void disconnected(Connection arg0) {
 				ListenersManager.callMethod(ConnectionListener.class, "onDisconnected", Connection.class, arg0);
@@ -115,28 +119,34 @@ public class Connect {
 	}
 
 	public static String getLocalIp() {
-		String ip = "127.0.0.1";
-		try {
-			Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-			while (interfaces.hasMoreElements()) {
-				NetworkInterface iface = interfaces.nextElement();
-				if (iface.isLoopback() || !iface.isUp())
-					continue;
+		if(localip == null) {
+			try {
+				Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+				while (interfaces.hasMoreElements()) {
+					NetworkInterface iface = interfaces.nextElement();
+					if (iface.isLoopback() || !iface.isUp())
+						continue;
 
-				Enumeration<InetAddress> addresses = iface.getInetAddresses();
-				while(addresses.hasMoreElements()) {
-					InetAddress addr = addresses.nextElement();
-					ip = addr.getHostAddress();
+					Enumeration<InetAddress> addresses = iface.getInetAddresses();
+					while(addresses.hasMoreElements()) {
+						InetAddress addr = addresses.nextElement();
+						localip = addr.getHostAddress();
+					}
 				}
+			} catch (SocketException e) {
+				throw new RuntimeException(e);
 			}
-		} catch (SocketException e) {
-			throw new RuntimeException(e);
+			
+			if(localip == null) {
+				return "127.0.0.1";
+			}
 		}
-		return ip;
+		return localip;
 	}
 
 	public static void initKryo(Kryo kryo) {
 		kryo.register(byte[].class);
+		kryo.register(String[].class);
 		kryo.register(byte[][].class);
 
 		kryo.register(Packet.class);
@@ -164,6 +174,7 @@ public class Connect {
 		kryo.register(Packet21LoadPlugin.class);
 		kryo.register(Packet22PluginMessage.class);
 		kryo.register(Packet23BlockChange.class);
+		kryo.register(Packet24ServerPopup.class);
 	}
 
 	public static int getServerConnection(Connection c) {
