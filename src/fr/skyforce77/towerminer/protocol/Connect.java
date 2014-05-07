@@ -31,6 +31,7 @@ import fr.skyforce77.towerminer.protocol.packets.Packet1Disconnecting;
 import fr.skyforce77.towerminer.protocol.packets.Packet20EntityData;
 import fr.skyforce77.towerminer.protocol.packets.Packet21LoadPlugin;
 import fr.skyforce77.towerminer.protocol.packets.Packet22PluginMessage;
+import fr.skyforce77.towerminer.protocol.packets.Packet23BlockChange;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
@@ -162,6 +163,7 @@ public class Connect {
 		kryo.register(Packet20EntityData.class);
 		kryo.register(Packet21LoadPlugin.class);
 		kryo.register(Packet22PluginMessage.class);
+		kryo.register(Packet23BlockChange.class);
 	}
 
 	public static int getServerConnection(Connection c) {

@@ -34,5 +34,14 @@ public class ChatMessage implements Serializable{
 			models.add(mo);
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String s = "";
+		for(ChatModel model : models) {
+			s = s+model.getText();
+		}
+		return s;
+	}
 
 }
