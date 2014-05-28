@@ -13,11 +13,12 @@ public class BigSending {
 	public static HashMap<Integer, ObjectReceiver> receiving = new HashMap<Integer, ObjectReceiver>();
 	public static HashMap<Integer, ObjectSender> sending = new HashMap<Integer, ObjectSender>();
 	public static boolean issending = false;
+	public static int bytesize = 2000;
 	
 	public static boolean receive(int id, int lenght, int pack, byte[] data) {
-		receiving.get(id).data = add(receiving.get(id).data, pack*100, data);
+		receiving.get(id).data = add(receiving.get(id).data, pack*bytesize, data);
 		receiving.get(id).received[pack] = true;
-		return pack*100+data.length >= lenght;
+		return pack*bytesize+data.length >= lenght;
 	}
 	
 	public static byte[] add(byte[] base, int start, byte[] data) {
@@ -46,10 +47,10 @@ public class BigSending {
 				
 				while(lenght < map.length) {
 					byte[] data = null;
-					if(lenght+100 > map.length) {
+					if(lenght+bytesize > map.length) {
 						data = new byte[map.length-lenght];
 					} else {
-						data = new byte[100];
+						data = new byte[bytesize];
 					}
 
 					int i = 0;
@@ -74,7 +75,6 @@ public class BigSending {
 				sender.thread = run;
 				sending.put(id, sender);
 				
-				System.out.println("BigSending: Sending "+map.length+" bytes");
 				int i = 0;
 				while(i < datas.size()) {
 					Packet2BigSending send = new Packet2BigSending();

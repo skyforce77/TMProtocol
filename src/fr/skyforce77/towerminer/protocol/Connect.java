@@ -1,6 +1,7 @@
 package fr.skyforce77.towerminer.protocol;
 
 import java.io.IOException;
+import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -51,6 +52,10 @@ public class Connect {
 	public static String localip;
 
 	public static void initServer() {
+		if(server != null) {
+			return;
+		}
+		
 		server = new Server();
 		server.start();
 		try {
@@ -84,6 +89,10 @@ public class Connect {
 	}
 
 	public static void initClient() {
+		if(client != null) {
+			return;
+		}
+		
 		client = new Client();
 		client.start();
 
@@ -130,7 +139,8 @@ public class Connect {
 					Enumeration<InetAddress> addresses = iface.getInetAddresses();
 					while(addresses.hasMoreElements()) {
 						InetAddress addr = addresses.nextElement();
-						localip = addr.getHostAddress();
+						if(!addr.isLoopbackAddress() && addr.isSiteLocalAddress() && !(addr instanceof Inet6Address))
+							localip = addr.getHostAddress();
 					}
 				}
 			} catch (SocketException e) {
