@@ -31,7 +31,7 @@ public class BigSending {
 	}
 
 	public static void sendBigObject(final Object object, final Connection client, final ReceivingThread run) {
-		new Thread() {
+		new Thread("BigSending") {
 			@Override
 			public void run() {
 				while(issending) {}
