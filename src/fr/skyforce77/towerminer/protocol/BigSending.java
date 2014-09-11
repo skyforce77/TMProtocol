@@ -34,7 +34,11 @@ public class BigSending {
 		new Thread("BigSending") {
 			@Override
 			public void run() {
-				while(issending) {}
+				while(issending) {
+					try {
+						Thread.sleep(100);
+					} catch(Exception e) {}
+				}
 				issending = true;
 				byte[] map = new Packet2BigSending().serialize(object);
 				int lenght = 0;
