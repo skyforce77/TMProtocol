@@ -56,6 +56,7 @@ public class Connect {
 			return;
 		}
 		
+		BigSending.initBigSending();
 		server = new Server();
 		server.start();
 		try {
@@ -93,6 +94,7 @@ public class Connect {
 			return;
 		}
 		
+		BigSending.initBigSending();
 		client = new Client();
 		client.start();
 
