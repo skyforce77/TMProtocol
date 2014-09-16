@@ -59,7 +59,7 @@ public class TMStorage implements Serializable {
 		bytes.put(key,value);
 	}
 	
-	public void addSWStorage(String key, TMStorage value)
+	public void addTMStorage(String key, TMStorage value)
 	{
 		storages.put(key,value);
 	}
