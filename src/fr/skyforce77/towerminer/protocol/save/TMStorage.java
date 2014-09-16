@@ -20,6 +20,7 @@ public class TMStorage implements Serializable {
 	private HashMap<String, Double> doubles = new HashMap<String, Double>();
 	private HashMap<String, Float> floats = new HashMap<String, Float>();
 	private HashMap<String, Byte> bytes = new HashMap<String, Byte>();
+	private HashMap<String, Boolean> booleans = new HashMap<String, Boolean>();
 	private HashMap<String, TMStorage> storages = new HashMap<String, TMStorage>();
 
 	public TMStorage(){};
@@ -57,6 +58,11 @@ public class TMStorage implements Serializable {
 	public void addByte(String key, Byte value)
 	{
 		bytes.put(key,value);
+	}
+	
+	public void addBoolean(String key, Boolean value)
+	{
+		booleans.put(key,value);
 	}
 	
 	public void addTMStorage(String key, TMStorage value)
@@ -138,6 +144,18 @@ public class TMStorage implements Serializable {
 		else
 		{
 			return (byte)0;
+		}
+	}
+	
+	public Boolean getBoolean(String key)
+	{
+		if(booleans.containsKey(key))
+		{
+			return booleans.get(key);
+		}
+		else
+		{
+			return false;
 		}
 	}
 	
