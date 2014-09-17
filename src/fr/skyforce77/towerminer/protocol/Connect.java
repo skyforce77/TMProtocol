@@ -18,7 +18,7 @@ import fr.skyforce77.towerminer.protocol.listeners.ListenersManager;
 import fr.skyforce77.towerminer.protocol.listeners.PacketListener;
 import fr.skyforce77.towerminer.protocol.packets.Packet;
 import fr.skyforce77.towerminer.protocol.packets.Packet0Connecting;
-import fr.skyforce77.towerminer.protocol.packets.Packet10EntityValueUpdate;
+import fr.skyforce77.towerminer.protocol.packets.Packet10DataValueUpdate;
 import fr.skyforce77.towerminer.protocol.packets.Packet11ChatMessage;
 import fr.skyforce77.towerminer.protocol.packets.Packet12Popup;
 import fr.skyforce77.towerminer.protocol.packets.Packet13EntityTeleport;
@@ -172,7 +172,7 @@ public class Connect {
 		kryo.register(Packet7EntityMove.class);
 		kryo.register(Packet8EntityRemove.class);
 		kryo.register(Packet9MouseClick.class);
-		kryo.register(Packet10EntityValueUpdate.class);
+		kryo.register(Packet10DataValueUpdate.class);
 		kryo.register(Packet11ChatMessage.class);
 		kryo.register(Packet12Popup.class);
 		kryo.register(Packet13EntityTeleport.class);

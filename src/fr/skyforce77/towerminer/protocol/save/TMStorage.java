@@ -18,7 +18,29 @@ public class TMStorage implements Serializable {
 	
 	public void addObject(String key, Serializable value)
 	{
-		entries.put(key, new TMEntry(TMEntry.UNKNOWN, value));
+		short type = TMEntry.UNKNOWN;
+		if(value instanceof Boolean) {
+			type = TMEntry.BOOLEAN;
+		} else if(value instanceof Byte) {
+			type = TMEntry.BYTE;
+		} else if(value instanceof Double) {
+			type = TMEntry.DOUBLE;
+		} else if(value instanceof Float) {
+			type = TMEntry.FLOAT;
+		} else if(value instanceof Integer) {
+			type = TMEntry.INTEGER;
+		} else if(value instanceof Long) {
+			type = TMEntry.LONG;
+		} else if(value instanceof Short) {
+			type = TMEntry.SHORT;
+		} else if(value instanceof String) {
+			type = TMEntry.STRING;
+		} else if(value instanceof TMImage) {
+			type = TMEntry.TMIMAGE;
+		} else if(value instanceof TMStorage) {
+			type = TMEntry.TMSTORAGE;
+		}
+		entries.put(key, new TMEntry(type, value));
 	}
 	
 	public void addObject(String key, short type, Serializable value)
