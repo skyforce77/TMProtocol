@@ -10,5 +10,9 @@ public class Packet1Disconnecting extends Packet{
 	public Packet1Disconnecting(String reason) {
 		this.reason = reason;
 	}
+	
+	public String getReason() {
+		return reason;
+	}
 
 }

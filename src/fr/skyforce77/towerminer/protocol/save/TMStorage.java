@@ -6,80 +6,86 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TMStorage implements Serializable {
 
 	private static final long serialVersionUID = -7775936155165721980L;
 	
-	private HashMap<String, String> strings = new HashMap<String, String>();
-	private HashMap<String, Serializable> objects = new HashMap<String, Serializable>();
-	private HashMap<String, Integer> integers = new HashMap<String, Integer>();
-	private HashMap<String, Long> longs = new HashMap<String, Long>();
-	private HashMap<String, Double> doubles = new HashMap<String, Double>();
-	private HashMap<String, Float> floats = new HashMap<String, Float>();
-	private HashMap<String, Byte> bytes = new HashMap<String, Byte>();
-	private HashMap<String, Boolean> booleans = new HashMap<String, Boolean>();
-	private HashMap<String, TMStorage> storages = new HashMap<String, TMStorage>();
+	private HashMap<String, TMEntry> entries = new HashMap<String, TMEntry>();
 
 	public TMStorage(){};
 	
 	public void addObject(String key, Serializable value)
 	{
-		objects.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.UNKNOWN, value));
+	}
+	
+	public void addObject(String key, short type, Serializable value)
+	{
+		entries.put(key, new TMEntry(type, value));
 	}
 	
 	public void addString(String key, String value)
 	{
-		strings.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.STRING, value));
 	}
 	
 	public void addInteger(String key, Integer value)
 	{
-		integers.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.INTEGER, value));
 	}
 	
 	public void addLong(String key, Long value)
 	{
-		longs.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.LONG, value));
 	}
 	
 	public void addDouble(String key, Double value)
 	{
-		doubles.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.DOUBLE, value));
 	}
 	
 	public void addFloat(String key, Float value)
 	{
-		floats.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.FLOAT, value));
 	}
 	
 	public void addByte(String key, Byte value)
 	{
-		bytes.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.BYTE, value));
 	}
 	
 	public void addBoolean(String key, Boolean value)
 	{
-		booleans.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.BOOLEAN, value));
 	}
 	
 	public void addTMStorage(String key, TMStorage value)
 	{
-		storages.put(key,value);
+		entries.put(key, new TMEntry(TMEntry.TMSTORAGE, value));
+	}
+	
+	public void addTMImage(String key, TMImage value)
+	{
+		entries.put(key, new TMEntry(TMEntry.TMIMAGE, value));
+	}
+	
+	public TMEntry getEntry(String key)
+	{
+		return entries.get(key);
 	}
 	
 	public Object getObject(String key)
 	{
-		return objects.get(key);
+		return entries.get(key).getEntry();
 	}
 	
 	public String getString(String key)
 	{
-		if(strings.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.STRING)
 		{
-			return strings.get(key);
+			return (String)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -89,9 +95,9 @@ public class TMStorage implements Serializable {
 	
 	public Integer getInteger(String key)
 	{
-		if(integers.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.INTEGER)
 		{
-			return integers.get(key);
+			return (Integer)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -101,9 +107,9 @@ public class TMStorage implements Serializable {
 	
 	public Long getLong(String key)
 	{
-		if(longs.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.LONG)
 		{
-			return longs.get(key);
+			return (Long)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -113,9 +119,9 @@ public class TMStorage implements Serializable {
 	
 	public Double getDouble(String key)
 	{
-		if(doubles.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.DOUBLE)
 		{
-			return doubles.get(key);
+			return (Double)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -125,9 +131,9 @@ public class TMStorage implements Serializable {
 	
 	public Float getFloat(String key)
 	{
-		if(floats.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.FLOAT)
 		{
-			return floats.get(key);
+			return (Float)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -137,9 +143,9 @@ public class TMStorage implements Serializable {
 	
 	public Byte getByte(String key)
 	{
-		if(bytes.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.BYTE)
 		{
-			return bytes.get(key);
+			return (Byte)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -149,9 +155,9 @@ public class TMStorage implements Serializable {
 	
 	public Boolean getBoolean(String key)
 	{
-		if(booleans.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.BOOLEAN)
 		{
-			return booleans.get(key);
+			return (Boolean)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -161,9 +167,9 @@ public class TMStorage implements Serializable {
 	
 	public TMStorage getTMStorage(String key)
 	{
-		if(storages.containsKey(key))
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.TMSTORAGE)
 		{
-			return storages.get(key);
+			return (TMStorage)entries.get(key).getEntry();
 		}
 		else
 		{
@@ -171,39 +177,28 @@ public class TMStorage implements Serializable {
 		}
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public ArrayList<HashMap> getValues()
+	public TMImage getTMImage(String key)
 	{
-		ArrayList<HashMap> maps = new ArrayList<HashMap>();
-		maps.add(this.bytes);
-		maps.add(this.doubles);
-		maps.add(this.floats);
-		maps.add(this.integers);
-		maps.add(this.longs);
-		maps.add(this.objects);
-		maps.add(this.storages);
-		maps.add(this.strings);
-		return maps;
+		if(entries.containsKey(key) && entries.get(key).getType() == TMEntry.TMIMAGE)
+		{
+			return (TMImage)entries.get(key).getEntry();
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public HashMap<String, TMEntry> getValues()
+	{
+		return entries;
+	}
+	
 	public void add(TMStorage storage)
 	{
-		ArrayList<HashMap> maps = storage.getValues();
-		this.bytes.putAll(maps.get(0));
-		this.doubles.putAll(maps.get(1));
-		this.floats.putAll(maps.get(2));
-		this.longs.putAll(maps.get(4));
-		this.objects.putAll(maps.get(5));
-		this.storages.putAll(maps.get(6));
-		this.strings.putAll(maps.get(7));
-		
-		for(Object s : maps.get(3).keySet())
+		for(Object s : storage.getValues().keySet())
 		{
-			if(!((String)s).equals("StorageType"))
-			{
-				integers.put((String)s, (Integer)maps.get(3).get(s));
-			}
+			entries.put((String)s, storage.getValues().get(s));
 		}
 	}
 	

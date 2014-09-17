@@ -2,7 +2,7 @@ package fr.skyforce77.towerminer.protocol;
 
 public class Protocol {
 
-	public static int version = 12;
-	public static int revision = 3;
+	public static int version = 13;
+	public static int revision = 0;
 
 }

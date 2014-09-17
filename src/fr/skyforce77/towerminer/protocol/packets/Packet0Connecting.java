@@ -21,6 +21,18 @@ public class Packet0Connecting extends Packet{
 		this.plugins = serialize(plugins);
 	}
 	
+	public int getVersion() {
+		return version;
+	}
+	
+	public String getPlayer() {
+		return player;
+	}
+	
+	public UUID getUUID() {
+		return (UUID)deserialize(uuid);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> getPlugins() {
 		return (ArrayList<String>)deserialize(plugins);
