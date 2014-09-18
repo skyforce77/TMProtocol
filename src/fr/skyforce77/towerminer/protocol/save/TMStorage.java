@@ -258,5 +258,16 @@ public class TMStorage implements Serializable {
 			return new TMStorage();
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String s = getClass().getName()+"[";
+		for(String v : getValues().keySet()) {
+			s = s+"["+v;
+			s = s+":"+getValues().get(v).getEntry()+"]";
+		}
+		s = s+"]";
+		return s;
+	}
 
 }
