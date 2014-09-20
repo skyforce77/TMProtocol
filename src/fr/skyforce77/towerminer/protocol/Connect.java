@@ -51,10 +51,7 @@ public class Connect {
 	public static int udp = 25252;
 	public static String localip;
 
-	public static void initServer() {
-		if(server != null) {
-			return;
-		}
+	public static boolean initServer() {
 		
 		BigSending.initBigSending();
 		server = new Server();
@@ -62,9 +59,8 @@ public class Connect {
 		try {
 			server.bind(tcp,udp);
 		} catch (IOException e) {
-			System.out.println("Can't be launched, port already used.");
-			System.exit(1);
-			return;
+			System.err.println("[TMProtocol] Server can't be launched, port already used.");
+			return false;
 		}
 
 		server.addListener(new Listener() {
@@ -87,12 +83,10 @@ public class Connect {
 		});
 
 		initKryo(server.getKryo());
+		return true;
 	}
 
 	public static void initClient() {
-		if(client != null) {
-			return;
-		}
 		
 		BigSending.initBigSending();
 		client = new Client();
