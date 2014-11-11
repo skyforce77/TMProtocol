@@ -6,7 +6,7 @@ public class ChatModel extends MessageModel{
 	private static final long serialVersionUID = 4659887846514541L;
 
 	private MessageModel mousemodel;
-	private boolean islink;
+	private String link;
 	
 	public ChatModel(String text) {
 		super(text);
@@ -26,11 +26,15 @@ public class ChatModel extends MessageModel{
 	}
 	
 	public boolean isLink() {
-		return islink;
+		return link != null;
 	}
 	
-	public void setLink(boolean islink) {
-		this.islink = islink;
+	public void setLink(String link) {
+		this.link = link;
+	}
+	
+	public String getLink() {
+		return link;
 	}
 
 }
