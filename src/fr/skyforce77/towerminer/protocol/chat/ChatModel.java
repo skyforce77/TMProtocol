@@ -33,6 +33,18 @@ public class ChatModel extends MessageModel{
 		this.link = link;
 	}
 	
+	public void setCommandAutoComplete(String command) {
+		this.link = "tmcmd://"+command;
+	}
+	
+	public void setCommandAutoType(String command) {
+		this.link = "tmtypecmd://"+command;
+	}
+	
+	public void setPluginInteract(String channel, String action) {
+		this.link = "tmplugin://"+channel+"."+action;
+	}
+	
 	public String getLink() {
 		return link;
 	}
