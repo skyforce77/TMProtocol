@@ -34,11 +34,8 @@ import fr.skyforce77.towerminer.protocol.packets.Packet21LoadPlugin;
 import fr.skyforce77.towerminer.protocol.packets.Packet22PluginMessage;
 import fr.skyforce77.towerminer.protocol.packets.Packet23BlockChange;
 import fr.skyforce77.towerminer.protocol.packets.Packet24ServerPopup;
-import fr.skyforce77.towerminer.protocol.packets.Packet25WindowTitle;
-import fr.skyforce77.towerminer.protocol.packets.Packet26DrawRectangle;
-import fr.skyforce77.towerminer.protocol.packets.Packet27DrawText;
-import fr.skyforce77.towerminer.protocol.packets.Packet28DrawImage;
-import fr.skyforce77.towerminer.protocol.packets.Packet29RemoveOverlayComponent;
+import fr.skyforce77.towerminer.protocol.packets.Packet25RemoveOverlayComponent;
+import fr.skyforce77.towerminer.protocol.packets.Packet26AddOverlayComponent;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
@@ -186,11 +183,8 @@ public class Connect {
 		kryo.register(Packet22PluginMessage.class);
 		kryo.register(Packet23BlockChange.class);
 		kryo.register(Packet24ServerPopup.class);
-		kryo.register(Packet25WindowTitle.class);
-		kryo.register(Packet26DrawRectangle.class);
-		kryo.register(Packet27DrawText.class);
-		kryo.register(Packet28DrawImage.class);
-		kryo.register(Packet29RemoveOverlayComponent.class);
+		kryo.register(Packet25RemoveOverlayComponent.class);
+		kryo.register(Packet26AddOverlayComponent.class);
 	}
 
 	public static int getServerConnection(Connection c) {
