@@ -41,8 +41,11 @@ public class ChatModel extends MessageModel{
 		this.link = "tmtypecmd://"+command;
 	}
 	
-	public void setPluginInteract(String channel, String action) {
-		this.link = "tmplugin://"+channel+"."+action;
+	public void setPluginInteract(String channel, String... actions) {
+		this.link = "tmplugin://"+channel;
+		for(String action : actions) {
+			this.link = link+"/"+action;
+		}
 	}
 	
 	public String getLink() {

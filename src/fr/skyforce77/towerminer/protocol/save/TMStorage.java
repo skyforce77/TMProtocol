@@ -261,10 +261,12 @@ public class TMStorage implements Serializable {
 	
 	@Override
 	public String toString() {
-		String s = getClass().getName()+"[";
+		String s = getClass().getName().substring(getClass().getName().lastIndexOf(".")+1)+" [";
+		int i = 0;
 		for(String v : getValues().keySet()) {
-			s = s+"["+v;
-			s = s+":"+getValues().get(v).getEntry()+"]";
+			s = s+(i !=0 ? ", " : "")+v;
+			s = s+": "+getValues().get(v).getEntry();
+			i++;
 		}
 		s = s+"]";
 		return s;
