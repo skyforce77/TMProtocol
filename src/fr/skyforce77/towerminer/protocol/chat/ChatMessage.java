@@ -29,6 +29,29 @@ public class ChatMessage implements Serializable{
 		models.add(m);
 	}
 	
+	public ArrayList<ChatModel> getModels(int start, int stop) {
+		ArrayList<ChatModel> mod = new ArrayList<>();
+		int actual = 0;
+		for(ChatModel model : models) {
+			if(actual >= start && actual+model.getText().length() <= stop) {
+				mod.add(model);
+			} else if(actual+model.getText().length() > start && actual+model.getText().length() <= stop) {
+				model.setText(model.getText().substring(actual+model.getText().length()-start));
+				mod.add(model);
+			}
+			actual += model.getText().length();
+		}
+		return mod;
+	}
+	
+	public ChatMessage cutMessage(int start, int stop) {
+		ChatMessage msg = new ChatMessage();
+		for(ChatModel model : getModels(start, stop)) {
+			msg.addModel(model);
+		}
+		return msg;
+	}
+	
 	public void add(ChatMessage m) {
 		for(ChatModel mo : m.getModels()) {
 			models.add(mo);
