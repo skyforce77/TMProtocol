@@ -37,6 +37,8 @@ import fr.skyforce77.towerminer.protocol.packets.Packet24ServerPopup;
 import fr.skyforce77.towerminer.protocol.packets.Packet25RemoveOverlayComponent;
 import fr.skyforce77.towerminer.protocol.packets.Packet26AddOverlayComponent;
 import fr.skyforce77.towerminer.protocol.packets.Packet27UpdateOverlayComponent;
+import fr.skyforce77.towerminer.protocol.packets.Packet28Cookie;
+import fr.skyforce77.towerminer.protocol.packets.Packet29RequestCookie;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
@@ -187,6 +189,8 @@ public class Connect {
 		kryo.register(Packet25RemoveOverlayComponent.class);
 		kryo.register(Packet26AddOverlayComponent.class);
 		kryo.register(Packet27UpdateOverlayComponent.class);
+		kryo.register(Packet28Cookie.class);
+		kryo.register(Packet29RequestCookie.class);
 	}
 
 	public static int getServerConnection(Connection c) {

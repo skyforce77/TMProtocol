@@ -93,6 +93,12 @@ public class TMStorage implements Serializable {
 		entries.put(key, new TMEntry(TMEntry.TMIMAGE, value));
 	}
 	
+	public void removeEntry(String key)
+	{
+		if(entries.containsKey(key))
+			entries.remove(key);
+	}
+	
 	public TMEntry getEntry(String key)
 	{
 		return entries.get(key);
