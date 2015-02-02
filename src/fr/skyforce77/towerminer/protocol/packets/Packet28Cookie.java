@@ -1,35 +1,40 @@
 package fr.skyforce77.towerminer.protocol.packets;
 
-import fr.skyforce77.towerminer.protocol.save.TMStorage;
 
 
 public class Packet28Cookie extends Packet{
 	
+	public static final int ADD = 0;
+	public static final int REMOVE = 1;
+	public static final int RESPOND = 2;
+	
 	public String name;
-	public byte[] storage;
+	public String cookie;
 	public int action;
 	
 	public Packet28Cookie() {}
 	
-	public Packet28Cookie(String name, TMStorage storage) {
+	public Packet28Cookie(String name, String cookie) {
 		this.name = name;
-		this.storage = serialize(storage);
+		this.cookie = cookie;
+	}
+	
+	public Packet28Cookie(int action, String name, String cookie) {
+		this.name = name;
+		this.cookie = cookie;
+		this.action = action;
 	}
 	
 	public String getName() {
 		return name;
 	}
 	
-	/*0 = add (server to client)
-	 *1 = remove (server to client)
-	 *2 = response (client to server)
-	 **/
 	public int getAction() {
 		return action;
 	}
 	
-	public TMStorage getStorage() {
-		return (TMStorage)deserialize(storage);
+	public String getCookie() {
+		return cookie;
 	}
 
 }
