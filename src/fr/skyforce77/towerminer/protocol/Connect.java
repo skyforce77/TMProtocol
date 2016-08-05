@@ -48,6 +48,7 @@ import fr.skyforce77.towerminer.protocol.packets.Packet5UpdateInfos;
 import fr.skyforce77.towerminer.protocol.packets.Packet6EntityCreate;
 import fr.skyforce77.towerminer.protocol.packets.Packet7EntityMove;
 import fr.skyforce77.towerminer.protocol.packets.Packet8EntityRemove;
+import fr.skyforce77.towerminer.protocol.packets.Packet99CustomPacket;
 import fr.skyforce77.towerminer.protocol.packets.Packet9MouseClick;
 
 public class Connect {
@@ -198,6 +199,8 @@ public class Connect {
 		kryo.register(Packet29RequestCookie.class);
 		kryo.register(Packet30EventNotify.class);
 		kryo.register(Packet31ServerProperties.class);
+		
+		kryo.register(Packet99CustomPacket.class);
 	}
 
 	public static int getServerConnection(Connection c) {
