@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.esotericsoftware.kryonet.Connection;
 
 import fr.skyforce77.towerminer.protocol.ObjectReceiver.ReceivingThread;
+import fr.skyforce77.towerminer.protocol.packets.Packet;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
 
 public class BigSending {
@@ -13,7 +14,7 @@ public class BigSending {
 	public static ArrayList<BigSending> sendlist = new ArrayList<>();
 	public static HashMap<Integer, ObjectReceiver> receiving = new HashMap<Integer, ObjectReceiver>();
 	public static HashMap<Integer, ObjectSender> sending = new HashMap<Integer, ObjectSender>();
-	public static int bytesize = 2000;
+	public static int bytesize = 1500;
 
 	public Object object;
 	public Connection client;
@@ -60,7 +61,7 @@ public class BigSending {
 	}
 	
 	public boolean send() {
-		byte[] map = new Packet2BigSending().serialize(object);
+		byte[] map = Packet.serialize(object);
 		int lenght = 0;
 		int id = 0;
 		ArrayList<byte[]> datas = new ArrayList<byte[]>();
@@ -88,7 +89,7 @@ public class BigSending {
 		}
 		
 		Packet2BigSending init = new Packet2BigSending();
-		init.data = init.serialize(datas.size());
+		init.data = Packet.serialize(datas.size());
 		init.lenght = map.length;
 		init.type = 0;
 		init.pid = id;

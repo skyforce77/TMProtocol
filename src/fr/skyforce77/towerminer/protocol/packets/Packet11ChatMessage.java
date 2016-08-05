@@ -5,6 +5,8 @@ import fr.skyforce77.towerminer.protocol.chat.ChatMessage;
 
 public class Packet11ChatMessage extends Packet{
 	
+	private static final long serialVersionUID = 888811L;
+	
 	public byte[] message;
 	public boolean response = false;
 	

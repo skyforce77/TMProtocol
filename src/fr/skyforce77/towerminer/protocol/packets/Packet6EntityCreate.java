@@ -5,6 +5,8 @@ import java.awt.Point;
 
 public class Packet6EntityCreate extends Packet{
 	
+	private static final long serialVersionUID = 88886L;
+	
 	public int eid = 0;
 	public int type = 0;
 	public int x = 0;

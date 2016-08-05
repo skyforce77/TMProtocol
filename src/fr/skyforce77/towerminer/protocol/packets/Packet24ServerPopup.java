@@ -3,6 +3,8 @@ package fr.skyforce77.towerminer.protocol.packets;
 
 public class Packet24ServerPopup extends Packet{
 	
+	private static final long serialVersionUID = 888824L;
+	
 	public String message;
 	public String[] description;
 	public int imageid;

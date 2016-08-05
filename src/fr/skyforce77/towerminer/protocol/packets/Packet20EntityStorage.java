@@ -3,6 +3,8 @@ package fr.skyforce77.towerminer.protocol.packets;
 
 public class Packet20EntityStorage extends Packet{
 	
+	private static final long serialVersionUID = 888820L;
+	
 	public int bigsendingid = 0;
 	public int entityid = 0;
 	

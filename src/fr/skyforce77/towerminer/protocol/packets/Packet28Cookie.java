@@ -4,6 +4,8 @@ package fr.skyforce77.towerminer.protocol.packets;
 
 public class Packet28Cookie extends Packet{
 	
+	private static final long serialVersionUID = 888828L;
+	
 	public static final int ADD = 0;
 	public static final int REMOVE = 1;
 	public static final int RESPOND = 2;

@@ -3,14 +3,18 @@ package fr.skyforce77.towerminer.protocol.packets;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import fr.skyforce77.towerminer.protocol.Connect;
 import fr.skyforce77.towerminer.protocol.Protocol;
 
 public class Packet0Connecting extends Packet{
+	
+	private static final long serialVersionUID = 88880L;
 	
 	public int version = Protocol.version;
 	public String player = "Missigno";
 	public byte[] uuid;
 	public byte[] plugins;
+	public String game = Connect.getGame();
 	
 	public Packet0Connecting() {}
 	
@@ -27,6 +31,10 @@ public class Packet0Connecting extends Packet{
 	
 	public String getPlayer() {
 		return player;
+	}
+	
+	public String getGame() {
+		return game;
 	}
 	
 	public UUID getUUID() {

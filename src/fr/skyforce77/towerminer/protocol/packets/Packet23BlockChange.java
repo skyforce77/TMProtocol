@@ -3,6 +3,8 @@ package fr.skyforce77.towerminer.protocol.packets;
 
 public class Packet23BlockChange extends Packet{
 	
+	private static final long serialVersionUID = 888823L;
+	
 	public int x,y,type,data;
 	public boolean overlay;
 	public byte[] storage;

@@ -5,6 +5,8 @@ import fr.skyforce77.towerminer.protocol.save.TMStorage;
 
 public class Packet26AddOverlayComponent extends Packet{
 	
+	private static final long serialVersionUID = 888826L;
+	
 	public String componentId;
 	public byte[] storage;
 	

@@ -3,6 +3,8 @@ package fr.skyforce77.towerminer.protocol.packets;
 
 public class Packet22PluginMessage extends Packet{
 	
+	private static final long serialVersionUID = 888822L;
+	
 	public String plugin;
 	public String version;
 	public int type;

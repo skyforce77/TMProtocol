@@ -5,6 +5,8 @@ import java.awt.Image;
 
 public class Packet12Popup extends Packet{
 	
+	private static final long serialVersionUID = 888812L;
+	
 	public String message;
 	public String option;
 	public String image;

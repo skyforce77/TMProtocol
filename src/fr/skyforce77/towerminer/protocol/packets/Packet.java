@@ -7,16 +7,21 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import com.esotericsoftware.kryonet.Connection;
 
 import fr.skyforce77.towerminer.protocol.Connect;
 
-public class Packet {
+public class Packet implements Serializable{
 
+	private static final long serialVersionUID = 8888L;
+	
+	Packet() {}
+	
 	private int id = -1;
 
-	public byte[] serialize(Object o) {
+	public static byte[] serialize(Object o) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutput out = null;
 		try {
@@ -36,7 +41,7 @@ public class Packet {
 		return null;
 	}
 
-	public Object deserialize(byte[] bytes) {
+	public static Object deserialize(byte[] bytes) {
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 		ObjectInput in = null;
 		try {

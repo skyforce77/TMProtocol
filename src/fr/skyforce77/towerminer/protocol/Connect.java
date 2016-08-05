@@ -40,6 +40,8 @@ import fr.skyforce77.towerminer.protocol.packets.Packet27UpdateOverlayComponent;
 import fr.skyforce77.towerminer.protocol.packets.Packet28Cookie;
 import fr.skyforce77.towerminer.protocol.packets.Packet29RequestCookie;
 import fr.skyforce77.towerminer.protocol.packets.Packet2BigSending;
+import fr.skyforce77.towerminer.protocol.packets.Packet30EventNotify;
+import fr.skyforce77.towerminer.protocol.packets.Packet31ServerProperties;
 import fr.skyforce77.towerminer.protocol.packets.Packet3Action;
 import fr.skyforce77.towerminer.protocol.packets.Packet4RoundFinished;
 import fr.skyforce77.towerminer.protocol.packets.Packet5UpdateInfos;
@@ -55,9 +57,11 @@ public class Connect {
 	public static int tcp = 25252;
 	public static int udp = 25252;
 	public static String localip;
+	private static String game = "";
 
-	public static boolean initServer() {
+	public static boolean initServer(String gameName) {
 		
+		game = gameName;
 		BigSending.initBigSending();
 		server = new Server();
 		server.start();
@@ -91,8 +95,9 @@ public class Connect {
 		return true;
 	}
 
-	public static void initClient() {
+	public static void initClient(String gameName) {
 		
+		game = gameName;
 		BigSending.initBigSending();
 		client = new Client();
 		client.start();
@@ -191,6 +196,8 @@ public class Connect {
 		kryo.register(Packet27UpdateOverlayComponent.class);
 		kryo.register(Packet28Cookie.class);
 		kryo.register(Packet29RequestCookie.class);
+		kryo.register(Packet30EventNotify.class);
+		kryo.register(Packet31ServerProperties.class);
 	}
 
 	public static int getServerConnection(Connection c) {
@@ -204,6 +211,10 @@ public class Connect {
 			}
 		}
 		return -1;
+	}
+	
+	public static String getGame() {
+		return game;
 	}
 
 }

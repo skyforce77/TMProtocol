@@ -3,6 +3,8 @@ package fr.skyforce77.towerminer.protocol.packets;
 
 public class Packet18ParticleEffect extends Packet{
 	
+	private static final long serialVersionUID = 888818L;
+	
 	public int x, y;
 	public int color;
 	public int type;
